@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+
+import requests
+import sys
+
+
+# Get the employee's name
+employee_url = ("https://jsonplaceholder.typicode.com/users/"
+                f"{sys.argv[1]}")
+user_response = requests.get(employee_url)
+user_info = user_response.json()
+employee_name = user_info['name']
+
+# Get all the tasks of an employee
+alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
+                f"{sys.argv[1]}/todos")
+alltasks_response = requests.get(alltasks_url)
+todos = alltasks_response.json()
+
+# Count the total number of completed tasks and total tasks
+total_tasks = len(todos)
+count = 0
+for task in todos:
+    if task['completed'] is True:
+        count += 1
+completed_tasks = count
+
+print(
+    f"Employee {employee_name} is done with tasks"
+    f"({completed_tasks}:{total_tasks}):")
+
+# Print the title of completed tasks
+for task in todos:
+    if task['completed'] is True:
+        print(f"\t {task['title']}")
+
+if __name__ == '__main__':
+    int(sys.argv[1])
