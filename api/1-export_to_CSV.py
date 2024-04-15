@@ -2,7 +2,7 @@
 
 import requests
 import sys
-
+import csv
 
 if __name__ == '__main__':
     int(sys.argv[1])
@@ -19,19 +19,13 @@ if __name__ == '__main__':
     alltasks_response = requests.get(alltasks_url)
     todos = alltasks_response.json()
 
-    # Count the total number of completed tasks and total tasks
-    total_tasks = len(todos)
-    count = 0
+    all_tasks = []
     for task in todos:
-        if task['completed'] is True:
-            count += 1
-    completed_tasks = count
+        list = [task['userId'], employee_name,
+                task['completed'], task['title']]
+        all_tasks.append(list)
 
-    print(
-        f"Employee {employee_name} is done with tasks"
-        f"({completed_tasks}:{total_tasks}):")
+    with open(f"{sys.argv[1]}.csv", 'w', encoding='utf8') as f:
+        csv_list = csv.writer(f, quoting=csv.QUOTE_ALL)
 
-    # Print the title of completed tasks
-    for task in todos:
-        if task['completed'] is True:
-            print(f"\t {task['title']}")
+        csv_list.writerows(all_tasks)
