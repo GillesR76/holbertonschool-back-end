@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # Converts the response from the server into a Python dictionary
     user_response = requests.get(employee_url)
     user_info = user_response.json()
-    EMPLOYEE_NAME = user_info.get('name')
+    EMPLOYEE_NAME = user_info.get('username')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
