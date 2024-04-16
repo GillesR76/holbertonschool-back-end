@@ -8,7 +8,7 @@ import sys
 
 
 if __name__ == '__main__':
-    int(sys.argv[1])
+    employee_id = int(sys.argv[1])
     # Get the employee's name
     employee_url = ("https://jsonplaceholder.typicode.com/users/"
                     f"{sys.argv[1]}")
