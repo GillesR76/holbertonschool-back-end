@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     print(
         f"Employee {EMPLOYEE_NAME} is done with tasks"
-        f"({NUMBER_OF_DONE_TASKS}:{TOTAL_NUMBER_OF_TASKS}):")
+        f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
 
     # Print the title of completed tasks
     for task in todos:
