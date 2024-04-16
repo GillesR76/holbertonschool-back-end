@@ -14,7 +14,7 @@ if __name__ == '__main__':
                     f"{sys.argv[1]}")
     user_response = requests.get(employee_url)
     user_info = user_response.json()
-    employee_name = user_info['name']
+    employee_name = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
@@ -24,8 +24,8 @@ if __name__ == '__main__':
 
     all_tasks = []
     for task in todos:
-        list = [task['userId'], employee_name,
-                task['completed'], task['title']]
+        list = [task.get('userId'), employee_name,
+                task.get('completed'), task.get('title')]
         all_tasks.append(list)
 
     with open(f"{sys.argv[1]}.csv", 'w', encoding='utf8') as f:
