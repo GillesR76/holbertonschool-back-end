@@ -11,14 +11,14 @@ if __name__ == '__main__':
     employee_id = int(sys.argv[1])
     # Get the employee's name
     employee_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}")
+                    f"{employee_id}")
     user_response = requests.get(employee_url)
     user_info = user_response.json()
     employee_name = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}/todos")
+                    f"{employee_id}/todos")
     alltasks_response = requests.get(alltasks_url)
     todos = alltasks_response.json()
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
                 task.get('completed'), task.get('title')]
         all_tasks.append(list)
 
-    with open(f"{sys.argv[1]}.csv", 'w', encoding='utf8') as f:
+    with open(f"{employee_id}.csv", 'w', encoding='utf8') as f:
         csv_list = csv.writer(f, quoting=csv.QUOTE_ALL)
 
         csv_list.writerows(all_tasks)
