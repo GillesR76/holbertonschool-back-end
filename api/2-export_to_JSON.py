@@ -8,18 +8,18 @@ import json
 
 
 if __name__ == '__main__':
-    int(sys.argv[1])
+    employee_id = int(sys.argv[1])
     # Get the employee's name
     employee_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}")
+                    f"{employee_id}")
     # Converts the response from the server into a Python dictionary
     user_response = requests.get(employee_url)
     user_info = user_response.json()
-    employee_name = user_info.get('name')
+    EMPLOYEE_NAME = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}/todos")
+                    f"{employee_id}/todos")
     alltasks_response = requests.get(alltasks_url)
     todos = alltasks_response.json()
 
@@ -27,10 +27,10 @@ if __name__ == '__main__':
     all_tasks = []
     for task in todos:
         dict = {'task': task.get('title'), 'completed': task.get('completed'),
-                'username': employee_name}
+                'username': EMPLOYEE_NAME}
         all_tasks.append(dict)
     tasks_dict = {task.get('userId'): all_tasks}
 
     # Converting the data into a json file
-    with open(f"{sys.argv[1]}.json", 'w', encoding='utf8') as f:
+    with open(f"{employee_id}.json", 'w', encoding='utf8') as f:
         json_list = json.dump(tasks_dict, f)
