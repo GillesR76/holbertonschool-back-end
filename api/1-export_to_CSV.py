@@ -1,8 +1,11 @@
 #!/usr/bin/python3
+"""Exporting an employee's data into a csv file"""
 
+
+import csv
 import requests
 import sys
-import csv
+
 
 if __name__ == '__main__':
     int(sys.argv[1])

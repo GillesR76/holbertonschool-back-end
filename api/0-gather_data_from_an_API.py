@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Fetch information about each employee toto list"""
+
 
 import requests
 import sys
