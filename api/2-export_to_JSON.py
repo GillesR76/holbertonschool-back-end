@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # Converts the response from the server into a Python dictionary
     user_response = requests.get(employee_url)
     user_info = user_response.json()
-    employee_name = user_info['name']
+    employee_name = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
@@ -26,10 +26,10 @@ if __name__ == '__main__':
     # Converting the data into a dictionary
     all_tasks = []
     for task in todos:
-        dict = {'task': task['title'], 'completed': task['completed'],
+        dict = {'task': task.get('title'), 'completed': task.get('completed'),
                 'username': employee_name}
         all_tasks.append(dict)
-    tasks_dict = {task['userId']: all_tasks}
+    tasks_dict = {task.get('userId'): all_tasks}
 
     # Converting the data into a json file
     with open(f"{sys.argv[1]}.json", 'w', encoding='utf8') as f:
