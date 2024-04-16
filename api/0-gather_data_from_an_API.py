@@ -7,16 +7,17 @@ import sys
 
 
 if __name__ == '__main__':
+    employee_id = int(sys.argv[1])
     # Get the employee's name
     employee_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}")
+                    f"{employee_id}")
     user_response = requests.get(employee_url)
     user_info = user_response.json()
     EMPLOYEE_NAME = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
-                    f"{sys.argv[1]}/todos")
+                    f"{employee_id}/todos")
     alltasks_response = requests.get(alltasks_url)
     todos = alltasks_response.json()
 
