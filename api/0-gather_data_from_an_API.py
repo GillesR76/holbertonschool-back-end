@@ -13,7 +13,7 @@ if __name__ == '__main__':
                     f"{sys.argv[1]}")
     user_response = requests.get(employee_url)
     user_info = user_response.json()
-    employee_name = user_info['name']
+    employee_name = user_info.get('name')
 
     # Get all the tasks of an employee
     alltasks_url = ("https://jsonplaceholder.typicode.com/users/"
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     total_tasks = len(todos)
     count = 0
     for task in todos:
-        if task['completed'] is True:
+        if task.get('completed') is True:
             count += 1
     completed_tasks = count
 
@@ -35,5 +35,5 @@ if __name__ == '__main__':
 
     # Print the title of completed tasks
     for task in todos:
-        if task['completed'] is True:
-            print(f"\t {task['title']}")
+        if task.get('completed') is True:
+            print(f"\t {task.get('title')}")
