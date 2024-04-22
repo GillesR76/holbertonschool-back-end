@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Annotate the below functions parameters and return 
+"""Annotate the below functions parameters and return
 values with the appropriate types
 """
 
